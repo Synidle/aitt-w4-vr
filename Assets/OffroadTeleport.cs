@@ -6,16 +6,16 @@ using Valve.VR;
 
 public class OffroadTeleport : MonoBehaviour
 {
-    [SerializeField] Transform raycastBasis; 
+    [SerializeField] Transform raycastBasis;
 
+    private LineRenderer lineRenderer; 
     private Vector3 hitPoint;
-    private LineRenderer lineRenderer;
     private float height;
 
     // Start is called before the first frame update
     void Start()
     {
-        lineRenderer = GetComponent<LineRenderer>();
+        raycastBasis.TryGetComponent<LineRenderer>(out lineRenderer);
         //height = transform.position.y; 
     }
 
@@ -29,8 +29,8 @@ public class OffroadTeleport : MonoBehaviour
         {
             hitPoint = hit.point;
 
-            lineRenderer.SetPosition(0, raycastBasis.position);
-            lineRenderer.SetPosition(1, hitPoint);
+            lineRenderer?.SetPosition(0, raycastBasis.position);
+            lineRenderer?.SetPosition(1, hitPoint);
         }
     }
 
